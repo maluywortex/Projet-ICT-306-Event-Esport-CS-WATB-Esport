@@ -1,5 +1,3 @@
-# fakesteam
-
 # Projet-ICT-306-Event-Esport-CS-WATB-Esport
 Projet ICT-306 , Event Esport CS WATB Esport . Ce projet est une evenemnt Esport sur le jeu-video Counter Strike. Nous devons organiser l'evenment de A à Z
 
