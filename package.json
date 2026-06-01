@@ -1,0 +1,22 @@
+{
+  "name": "event-cs-2026",
+  "version": "1.0.0",
+  "description": "Counter-Strike 2026 Tournament Web Platform & Event Organizer Portal",
+  "main": "src/backend/server.js",
+  "scripts": {
+    "start": "node src/backend/server.js",
+    "dev": "node src/backend/server.js"
+  },
+  "keywords": [
+    "cs2",
+    "esports",
+    "tournament",
+    "ticketing",
+    "dashboard"
+  ],
+  "author": "EventAndParty",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
