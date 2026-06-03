@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="styles.css">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<<<<<<< HEAD:src/frontend/index.html
+    <!-- Leaflet Map Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="icon" href="/image.ico">
+=======
+>>>>>>> 18401c2dd9cf787f10919b88263d612decb903be:docs/maquette/index.html
 </head>
 <body class="dark-theme">
     
@@ -36,6 +42,7 @@
                     <li><a href="#hero" class="nav-link active" id="nav-home">Accueil</a></li>
                     <li><a href="#about" class="nav-link" id="nav-about">L'Événement</a></li>
                     <li><a href="#tickets" class="nav-link" id="nav-tickets">Billetterie</a></li>
+                    <li><a href="#parking" class="nav-link" id="nav-parking"><i class="fa-solid fa-parking"></i> Parking</a></li>
                     <li><a href="#live" class="nav-link" id="nav-live"><span class="pulse-dot"></span>Direct & Brackets</a></li>
                 </ul>
             </nav>
@@ -459,7 +466,104 @@
             </div>
         </section>
 
-        <!-- SECTION 4: LIVE TOURNAMENT RESULTS & BRACKETS -->
+        <!-- SECTION 4: PARKING INFORMATION & MAP -->
+        <section class="parking-section" id="parking">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><i class="fa-solid fa-parking text-primary"></i> Informations de Stationnement</h2>
+                    <p class="section-subtitle">Trouvez facilement une place de parking pour accéder à La Marive à Yverdon-les-Bains.</p>
+                </div>
+
+                <div class="parking-layout-grid">
+                    <!-- PARKING MAP -->
+                    <div class="parking-map-container">
+                        <div id="parking-map" class="parking-map"></div>
+                    </div>
+
+                    <!-- PARKING INFORMATION PANEL -->
+                    <div class="parking-info-panel">
+                        <h3 class="panel-title"><i class="fa-solid fa-info-circle text-primary"></i> Parkings Officiels</h3>
+
+                        <!-- PARKING BLOCK 1: LA MARIVE MAIN PARKING -->
+                        <div class="parking-block" id="parking-block-main">
+                            <div class="parking-header">
+                                <div class="parking-name">
+                                    <h4>Parking La Marive</h4>
+                                    <span class="parking-type">Officiel</span>
+                                </div>
+                                <div class="parking-status available" id="parking-status-main">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Places Disponibles</span>
+                                </div>
+                            </div>
+                            <div class="parking-details">
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-location-dot text-primary"></i>
+                                    <span>Quai de la Thièle 2, 1400 Yverdon-les-Bains</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-square-parking text-primary"></i>
+                                    <span id="parking-spaces-main">350 places disponibles</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-clock text-primary"></i>
+                                    <span>Accessible 24/7 pendant l'événement</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-tag text-primary"></i>
+                                    <span>Gratuit pour les spectateurs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PARKING BLOCK 2: SECONDARY PARKING -->
+                        <div class="parking-block" id="parking-block-secondary">
+                            <div class="parking-header">
+                                <div class="parking-name">
+                                    <h4>Parking Centre Dortaux</h4>
+                                    <span class="parking-type">Secondaire</span>
+                                </div>
+                                <div class="parking-status available" id="parking-status-secondary">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Places Disponibles</span>
+                                </div>
+                            </div>
+                            <div class="parking-details">
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-location-dot text-primary"></i>
+                                    <span>Avenue de Menloup 2, 1400 Yverdon-les-Bains</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-square-parking text-primary"></i>
+                                    <span id="parking-spaces-secondary">280 places disponibles</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-walking text-primary"></i>
+                                    <span>~10 min à pied de La Marive</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-tag text-primary"></i>
+                                    <span>CHF 2.00 / heure</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PARKING TIPS -->
+                        <div class="parking-tips-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i> Conseils Pratiques</h4>
+                            <ul>
+                                <li>Arriez-vous tôt pour garantir une place prés du lieu</li>
+                                <li>Le parking La Marive est situé directement à l'entrée de l'événement</li>
+                                <li>Navette gratuite depuis le parking Centre Dortaux</li>
+                                <li>Places PMR réservées à proximité de l'entrée</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LIVE TOURNAMENT RESULTS & BRACKETS -->
         <section class="live-section" id="live">
             <div class="container">
                 <div class="section-header text-center">
@@ -747,6 +851,7 @@
     </footer>
 
     <!-- App JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

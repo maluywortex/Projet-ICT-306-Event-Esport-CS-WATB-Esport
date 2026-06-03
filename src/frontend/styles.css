@@ -1975,6 +1975,246 @@ input:focus, textarea:focus {
     font-size: 0.8rem;
 }
 
+/* --- PARKING SECTION --- */
+.parking-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--border-color);
+    background: rgba(15, 7, 35, 0.3);
+}
+
+.parking-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.parking-map-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.parking-map {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+}
+
+.parking-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.panel-title {
+    font-family: var(--font-gaming);
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.parking-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.parking-block:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.15);
+}
+
+.parking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.parking-name h4 {
+    font-family: var(--font-gaming);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.parking-type {
+    display: inline-block;
+    background: rgba(168, 85, 247, 0.15);
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.parking-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.parking-status .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.parking-status.available {
+    color: var(--success);
+}
+
+.parking-status.available .status-dot {
+    background-color: var(--success);
+    box-shadow: 0 0 8px var(--success);
+}
+
+.parking-status.limited {
+    color: var(--warning);
+}
+
+.parking-status.limited .status-dot {
+    background-color: var(--warning);
+    box-shadow: 0 0 8px var(--warning);
+}
+
+.parking-status.full {
+    color: var(--danger);
+}
+
+.parking-status.full .status-dot {
+    background-color: var(--danger);
+    box-shadow: 0 0 8px var(--danger);
+}
+
+.parking-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.detail-row i {
+    font-size: 1rem;
+    min-width: 1rem;
+}
+
+.parking-tips-box {
+    background: rgba(168, 85, 247, 0.08);
+    border: 1px solid var(--primary);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.parking-tips-box h4 {
+    font-family: var(--font-gaming);
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.parking-tips-box ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.parking-tips-box li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.parking-tips-box li::before {
+    content: "✓";
+    color: var(--primary);
+    font-weight: 700;
+    min-width: 15px;
+}
+
+/* Leaflet Map Customization */
+.leaflet-container {
+    background: var(--bg-deep);
+    border-radius: 12px;
+}
+
+.leaflet-control-zoom {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+}
+
+.leaflet-control-zoom a {
+    background-color: var(--bg-card) !important;
+    color: var(--text-main) !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background-color: var(--primary) !important;
+}
+
+.leaflet-popup-content-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.leaflet-popup-content {
+    color: var(--text-main);
+}
+
+.parking-marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(168, 85, 247, 0.4);
+}
+
+.parking-marker-venue {
+    background: var(--accent);
+}
+
+/* --- RESPONSIVE PARKING --- */
+@media (max-width: 1000px) {
+    .parking-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .parking-map {
+        height: 350px;
+    }
+}
+
 /* --- KEYFRAME ANIMATIONS --- */
 @keyframes pulse {
     0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
