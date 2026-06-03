@@ -917,17 +917,20 @@ button, input, textarea, select {
 
 .detail-score {
     font-family: var(--font-gaming);
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 900;
     color: #fff;
     background: var(--bg-deep);
     border: 2px solid var(--border-color);
     border-radius: 12px;
-    width: 90px;
+    width: auto;
+    min-width: 140px;
     height: 90px;
+    padding: 0 15px;
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .detail-score.live-pulse {
