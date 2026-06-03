@@ -27,7 +27,7 @@
         <div class="container header-container">
             <div class="logo-area">
                 <a href="#" class="logo-link">
-                    <span class="logo-icon"><i class="fa-solid fa-crosshairs text-primary"></i></span>
+                    <img src="../../logo/logo.png" alt="WATB Logo" style="height: 40px; margin-right: 10px;">
                     <span class="logo-text">EVENT<span class="text-primary font-orbitron">CS</span></span>
                 </a>
             </div>
@@ -139,22 +139,53 @@
 
                 <!-- CREDIT CARD DETAIL -->
                 <div class="payment-method-details" id="card-details-panel">
-                    <form id="credit-card-form" class="checkout-form">
+                    <form id="credit-card-form" class="checkout-form" novalidate>
                         <div class="form-group">
                             <label for="card-num">Numéro de carte</label>
-                            <input type="text" id="card-num" placeholder="4000 1234 5678 9010" pattern="[0-9\s]{13,19}">
+                            <div class="card-input-wrapper">
+                                <input type="text" id="card-num" placeholder="4000 1234 5678 9010" required maxlength="19">
+                                <span class="card-brand-icon" id="card-brand-icon"><i class="fa-solid fa-credit-card"></i></span>
+                            </div>
+                            <span class="validation-error" id="card-num-error"></span>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="card-exp">Date d'expiration</label>
-                                <input type="text" id="card-exp" placeholder="MM/AA">
+                                <input type="text" id="card-exp" placeholder="MM/AA" required maxlength="5">
+                                <span class="validation-error" id="card-exp-error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="card-cvc">CVC</label>
-                                <input type="text" id="card-cvc" placeholder="123">
+                                <input type="text" id="card-cvc" placeholder="123" required maxlength="4">
+                                <span class="validation-error" id="card-cvc-error"></span>
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <!-- SECURITY BADGES & TRUST ASSURANCE -->
+                <div class="checkout-security-badges">
+                    <div class="security-badge-item">
+                        <i class="fa-solid fa-lock text-success"></i>
+                        <div>
+                            <span class="badge-title">Chiffrement SSL 256 bits</span>
+                            <span class="badge-sub">Transaction sécurisée cryptée</span>
+                        </div>
+                    </div>
+                    <div class="security-badge-item">
+                        <i class="fa-solid fa-shield-halved text-success"></i>
+                        <div>
+                            <span class="badge-title">Conformité PCI-DSS</span>
+                            <span class="badge-sub">Données de paiement protégées</span>
+                        </div>
+                    </div>
+                    <div class="security-badge-item">
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <div>
+                            <span class="badge-title">Simulation 3D Secure</span>
+                            <span class="badge-sub">Authentification bancaire forte</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="checkout-summary-bar">
@@ -212,6 +243,54 @@
 
                     <button class="btn btn-outline btn-block mt-3" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimer mon billet</button>
                     <button class="btn btn-primary btn-block mt-2" id="finish-checkout-btn">Retourner au site</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D SECURE MOCK MODAL OVERLAY -->
+    <div class="modal-overlay" id="secure-3ds-modal">
+        <div class="modal-card secure-modal-card" style="max-width: 480px;">
+            <div class="secure-3ds-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:15px; margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <i class="fa-solid fa-shield-halved text-primary" style="font-size:1.5rem;"></i>
+                    <h3 class="modal-title font-orbitron" style="margin:0; font-size:1.2rem;">BANK SECURE CONNECT</h3>
+                </div>
+                <span class="ticket-tag" style="position:static; background:rgba(16,185,129,0.1); border-color:var(--success); color:var(--success)">3D Secure v2.2</span>
+            </div>
+            
+            <div class="secure-3ds-body" id="secure-3ds-body">
+                <!-- Loader: Connection with Bank -->
+                <div class="secure-3ds-loading" id="secure-3ds-loading" style="text-align:center; padding:30px 0;">
+                    <i class="fa-solid fa-circle-notch fa-spin text-primary" style="font-size:3rem; margin-bottom:20px;"></i>
+                    <p style="font-weight:600; margin-bottom:5px;">Connexion sécurisée avec l'émetteur de votre carte...</p>
+                    <span class="text-muted" style="font-size:0.75rem;">Vérification du protocole d'authentification forte (3DS)</span>
+                </div>
+
+                <!-- OTP verification view -->
+                <div class="secure-3ds-otp d-none" id="secure-3ds-otp">
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
+                        Pour sécuriser votre achat, un code d'authentification unique à 6 chiffres a été envoyé par SMS à votre numéro de téléphone associé pour régler <strong class="checkout-total-val text-primary">0.00 CHF</strong>.
+                    </p>
+                    
+                    <div class="alert alert-warning-outline" id="demo-3ds-box" style="margin-bottom:20px;">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span><strong>Démo Sécurité :</strong> Code reçu : <code id="demo-3ds-code" style="font-weight:700; color:var(--warning)">123456</code></span>
+                    </div>
+
+                    <form id="secure-3ds-form" class="checkout-form" novalidate>
+                        <div class="form-group">
+                            <label for="secure-3ds-otp-field" style="text-align:center; display:block; margin-bottom:5px;">Code de sécurité</label>
+                            <input type="text" id="secure-3ds-otp-field" placeholder="123456" maxlength="6" pattern="[0-9]{6}" required 
+                                   style="text-align:center; font-size:1.8rem; letter-spacing:8px; font-family:var(--font-gaming); font-weight:700; width:200px; margin:0 auto; display:block;">
+                            <span class="validation-error" id="secure-3ds-error" style="display:none; text-align:center; color:var(--danger); font-size:0.8rem; margin-top:8px;">Code incorrect.</span>
+                        </div>
+                        
+                        <div class="checkout-actions" style="margin-top:25px;">
+                            <button type="button" class="btn btn-outline" id="cancel-3ds-btn">Annuler</button>
+                            <button type="submit" class="btn btn-primary" id="confirm-3ds-btn">Confirmer</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -619,7 +698,7 @@
         <div class="container footer-grid">
             <div class="footer-brand">
                 <div class="logo-area">
-                    <span class="logo-icon"><i class="fa-solid fa-crosshairs text-primary"></i></span>
+                    <img src="../../logo/logo.png" alt="WATB Logo" style="height: 40px; margin-right: 10px;">
                     <span class="logo-text">EVENT<span class="text-primary font-orbitron">CS</span></span>
                 </div>
                 <p class="footer-desc">
