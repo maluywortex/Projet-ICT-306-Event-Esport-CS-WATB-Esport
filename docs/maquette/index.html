@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event CS 2026 — Tournoi Counter-Strike Esport à Yverdon</title>
+    <meta name="description" content="Rejoignez le plus grand tournoi Esport CS2 de Suisse Romande. Les 23 et 24 mai 2026 à La Marive, Yverdon-les-Bains. Billetterie, résultats en direct et animations.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<<<<<<< HEAD:src/frontend/index.html
+    <!-- Leaflet Map Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="icon" href="/image.ico">
+=======
+>>>>>>> 18401c2dd9cf787f10919b88263d612decb903be:docs/maquette/index.html
+</head>
+<body class="dark-theme">
+    
+    <!-- GRID GRAPHICS BACKGROUND OVERLAY -->
+    <div class="cyber-grid"></div>
+    <div class="ambient-glow bg-purple-glow-1"></div>
+    <div class="ambient-glow bg-purple-glow-2"></div>
+
+    <!-- MAIN NAVIGATION HEADER -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <div class="logo-area">
+                <a href="#" class="logo-link">
+                    <img src="../../logo/logo.png" alt="WATB Logo" style="height: 40px; margin-right: 10px;">
+                    <span class="logo-text">EVENT<span class="text-primary font-orbitron">CS</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#hero" class="nav-link active" id="nav-home">Accueil</a></li>
+                    <li><a href="#about" class="nav-link" id="nav-about">L'Événement</a></li>
+                    <li><a href="#tickets" class="nav-link" id="nav-tickets">Billetterie</a></li>
+                    <li><a href="#parking" class="nav-link" id="nav-parking"><i class="fa-solid fa-parking"></i> Parking</a></li>
+                    <li><a href="#live" class="nav-link" id="nav-live"><span class="pulse-dot"></span>Direct & Brackets</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <!-- Shopping Cart Icon with Count -->
+                <button class="icon-btn cart-toggle-btn" id="cart-toggle-btn" aria-label="Voir le panier">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="cart-badge" id="cart-badge-count">0</span>
+                </button>
+                
+                <!-- Admin / Authentication Button -->
+                <button class="btn btn-outline" id="admin-portal-btn">
+                    <i class="fa-solid fa-user-shield"></i> <span>Portail Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SHOPPING CART DRAWER (SIDEBAR) -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3><i class="fa-solid fa-basket-shopping text-primary"></i> Votre Panier</h3>
+            <button class="close-drawer-btn" id="close-cart-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="cart-drawer-content" id="cart-items-container">
+            <!-- Dynamic Cart Items injected here -->
+            <div class="empty-cart-message">
+                <i class="fa-solid fa-box-open"></i>
+                <p>Votre panier est vide. Choisissez vos billets ci-dessous !</p>
+            </div>
+        </div>
+        
+        <div class="cart-drawer-footer">
+            <div class="cart-subtotal">
+                <span>Total</span>
+                <span class="cart-total-price" id="cart-total-price">0.00 CHF</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkout-btn" disabled>
+                Passer au paiement <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- CHECKOUT MODAL OVERLAY -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-card checkout-modal-card">
+            <button class="modal-close-btn" id="close-checkout-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="checkout-steps">
+                <div class="step active" id="step-1-indicator">1. Coordonnées</div>
+                <div class="step" id="step-2-indicator">2. Paiement</div>
+                <div class="step" id="step-3-indicator">3. Confirmation</div>
+            </div>
+
+            <!-- STEP 1: CONTACT INFO -->
+            <div class="checkout-step-content active" id="checkout-step-1">
+                <h3 class="modal-title">Vos informations</h3>
+                <p class="modal-subtitle">Entrez vos détails pour l'émission des billets officiels nominatifs.</p>
+                <form id="contact-form" class="checkout-form">
+                    <div class="form-group">
+                        <label for="checkout-name">Nom Complet</label>
+                        <input type="text" id="checkout-name" required placeholder="Ex: Jean Dupont">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout-email">Adresse E-mail</label>
+                        <input type="email" id="checkout-email" required placeholder="Ex: jean.dupont@gmail.com">
+                        <span class="form-help">Les billets PDF seront envoyés à cette adresse.</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Continuer vers le paiement</button>
+                </form>
+            </div>
+
+            <!-- STEP 2: PAYMENT METHOD -->
+            <div class="checkout-step-content" id="checkout-step-2">
+                <h3 class="modal-title">Choisissez votre moyen de paiement</h3>
+                <p class="modal-subtitle">Paiement 100% sécurisé et instantané.</p>
+                
+                <div class="payment-methods-grid">
+                    <div class="payment-card active" data-method="Twint" id="pay-twint-card">
+                        <div class="payment-card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <span>TWINT</span>
+                    </div>
+                    <div class="payment-card" data-method="CreditCard" id="pay-card-card">
+                        <div class="payment-card-icon"><i class="fa-regular fa-credit-card"></i></div>
+                        <span>Carte Bancaire</span>
+                    </div>
+                </div>
+
+                <!-- TWINT DETAIL -->
+                <div class="payment-method-details active" id="twint-details-panel">
+                    <div class="twint-simulation">
+                        <div class="twint-qr-mock">
+                            <i class="fa-solid fa-qrcode"></i>
+                            <div class="twint-logo-placeholder">TWINT</div>
+                        </div>
+                        <p class="twint-instructions">Scannez ce QR Code de démonstration avec votre application TWINT pour régler <strong class="checkout-total-val text-primary">0.00 CHF</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- CREDIT CARD DETAIL -->
+                <div class="payment-method-details" id="card-details-panel">
+                    <form id="credit-card-form" class="checkout-form" novalidate>
+                        <div class="form-group">
+                            <label for="card-num">Numéro de carte</label>
+                            <div class="card-input-wrapper">
+                                <input type="text" id="card-num" placeholder="4000 1234 5678 9010" required maxlength="19">
+                                <span class="card-brand-icon" id="card-brand-icon"><i class="fa-solid fa-credit-card"></i></span>
+                            </div>
+                            <span class="validation-error" id="card-num-error"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="card-exp">Date d'expiration</label>
+                                <input type="text" id="card-exp" placeholder="MM/AA" required maxlength="5">
+                                <span class="validation-error" id="card-exp-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-cvc">CVC</label>
+                                <input type="text" id="card-cvc" placeholder="123" required maxlength="4">
+                                <span class="validation-error" id="card-cvc-error"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- SECURITY BADGES & TRUST ASSURANCE -->
+                <div class="checkout-security-badges">
+                    <div class="security-badge-item">
+                        <i class="fa-solid fa-lock text-success"></i>
+                        <div>
+                            <span class="badge-title">Chiffrement SSL 256 bits</span>
+                            <span class="badge-sub">Transaction sécurisée cryptée</span>
+                        </div>
+                    </div>
+                    <div class="security-badge-item">
+                        <i class="fa-solid fa-shield-halved text-success"></i>
+                        <div>
+                            <span class="badge-title">Conformité PCI-DSS</span>
+                            <span class="badge-sub">Données de paiement protégées</span>
+                        </div>
+                    </div>
+                    <div class="security-badge-item">
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <div>
+                            <span class="badge-title">Simulation 3D Secure</span>
+                            <span class="badge-sub">Authentification bancaire forte</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-summary-bar">
+                    <span>Total à payer :</span>
+                    <span class="checkout-total-val text-primary font-orbitron">0.00 CHF</span>
+                </div>
+                
+                <div class="checkout-actions">
+                    <button class="btn btn-outline" id="back-to-step-1">Retour</button>
+                    <button class="btn btn-primary" id="confirm-payment-btn">Confirmer et Payer</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: SUCCESS CONFIRMATION -->
+            <div class="checkout-step-content" id="checkout-step-3">
+                <div class="success-screen">
+                    <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3 class="modal-title">Paiement Réussi !</h3>
+                    <p class="modal-subtitle">Merci pour votre commande. Vos billets ont été générés avec succès.</p>
+                    
+                    <div class="ticket-receipt" id="ticket-receipt-card">
+                        <!-- Simulated printable ticket standard -->
+                        <div class="ticket-receipt-header">
+                            <div>
+                                <span class="ticket-badge">BILLET OFFICIEL</span>
+                                <h4 id="receipt-ticket-name">Weekend Warrior Pass</h4>
+                            </div>
+                            <div class="ticket-receipt-logo">EVENT<span>CS</span></div>
+                        </div>
+                        <div class="ticket-receipt-body">
+                            <div class="receipt-info-grid">
+                                <div>
+                                    <span class="label">Détenteur</span>
+                                    <span class="val" id="receipt-holder-name">Jean Dupont</span>
+                                </div>
+                                <div>
+                                    <span class="label">Date</span>
+                                    <span class="val">23 & 24 Mai 2026</span>
+                                </div>
+                                <div>
+                                    <span class="label">Lieu</span>
+                                    <span class="val">La Marive, Yverdon</span>
+                                </div>
+                                <div>
+                                    <span class="label">N° Commande</span>
+                                    <span class="val" id="receipt-order-id">ORD-8921</span>
+                                </div>
+                            </div>
+                            <div class="receipt-qr-code">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <span class="qr-label">Scanner à l'entrée</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline btn-block mt-3" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimer mon billet</button>
+                    <button class="btn btn-primary btn-block mt-2" id="finish-checkout-btn">Retourner au site</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D SECURE MOCK MODAL OVERLAY -->
+    <div class="modal-overlay" id="secure-3ds-modal">
+        <div class="modal-card secure-modal-card" style="max-width: 480px;">
+            <div class="secure-3ds-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:15px; margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <i class="fa-solid fa-shield-halved text-primary" style="font-size:1.5rem;"></i>
+                    <h3 class="modal-title font-orbitron" style="margin:0; font-size:1.2rem;">BANK SECURE CONNECT</h3>
+                </div>
+                <span class="ticket-tag" style="position:static; background:rgba(16,185,129,0.1); border-color:var(--success); color:var(--success)">3D Secure v2.2</span>
+            </div>
+            
+            <div class="secure-3ds-body" id="secure-3ds-body">
+                <!-- Loader: Connection with Bank -->
+                <div class="secure-3ds-loading" id="secure-3ds-loading" style="text-align:center; padding:30px 0;">
+                    <i class="fa-solid fa-circle-notch fa-spin text-primary" style="font-size:3rem; margin-bottom:20px;"></i>
+                    <p style="font-weight:600; margin-bottom:5px;">Connexion sécurisée avec l'émetteur de votre carte...</p>
+                    <span class="text-muted" style="font-size:0.75rem;">Vérification du protocole d'authentification forte (3DS)</span>
+                </div>
+
+                <!-- OTP verification view -->
+                <div class="secure-3ds-otp d-none" id="secure-3ds-otp">
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
+                        Pour sécuriser votre achat, un code d'authentification unique à 6 chiffres a été envoyé par SMS à votre numéro de téléphone associé pour régler <strong class="checkout-total-val text-primary">0.00 CHF</strong>.
+                    </p>
+                    
+                    <div class="alert alert-warning-outline" id="demo-3ds-box" style="margin-bottom:20px;">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span><strong>Démo Sécurité :</strong> Code reçu : <code id="demo-3ds-code" style="font-weight:700; color:var(--warning)">123456</code></span>
+                    </div>
+
+                    <form id="secure-3ds-form" class="checkout-form" novalidate>
+                        <div class="form-group">
+                            <label for="secure-3ds-otp-field" style="text-align:center; display:block; margin-bottom:5px;">Code de sécurité</label>
+                            <input type="text" id="secure-3ds-otp-field" placeholder="123456" maxlength="6" pattern="[0-9]{6}" required 
+                                   style="text-align:center; font-size:1.8rem; letter-spacing:8px; font-family:var(--font-gaming); font-weight:700; width:200px; margin:0 auto; display:block;">
+                            <span class="validation-error" id="secure-3ds-error" style="display:none; text-align:center; color:var(--danger); font-size:0.8rem; margin-top:8px;">Code incorrect.</span>
+                        </div>
+                        
+                        <div class="checkout-actions" style="margin-top:25px;">
+                            <button type="button" class="btn btn-outline" id="cancel-3ds-btn">Annuler</button>
+                            <button type="submit" class="btn btn-primary" id="confirm-3ds-btn">Confirmer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="main-content">
+        
+        <!-- SECTION 1: HERO CONTAINER -->
+        <section class="hero-section" id="hero">
+            <div class="container hero-container">
+                <div class="hero-text-content">
+                    <div class="event-badge-glow">
+                        <span class="pulse-dot"></span> EVENTANDPARTY PRÉSENTE
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        EVENT <span class="text-glow-purple font-orbitron">CS 2026</span>
+                    </h1>
+                    
+                    <p class="hero-tagline">
+                        Le tournoi Esport Counter-Strike le plus compétitif de Suisse Romande. Retrouvez le meilleur du gaming professionnel dans une ambiance survoltée.
+                    </p>
+
+                    <div class="event-details-bar">
+                        <div class="detail-item">
+                            <i class="fa-regular fa-calendar-days text-primary"></i>
+                            <div>
+                                <span class="d-label">Dates</span>
+                                <span class="d-val">23 - 24 Mai 2026</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fa-solid fa-location-dot text-primary"></i>
+                            <div>
+                                <span class="d-label">Lieu</span>
+                                <span class="d-val">La Marive, Yverdon-les-Bains</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <i class="fa-solid fa-users text-primary"></i>
+                            <div>
+                                <span class="d-label">Spectateurs</span>
+                                <span class="d-val">~500 / jour</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta-group">
+                        <a href="#tickets" class="btn btn-primary btn-lg"><i class="fa-solid fa-ticket"></i> Réserver mon Billet</a>
+                        <a href="#live" class="btn btn-outline btn-lg"><i class="fa-solid fa-play"></i> Matchs en Direct</a>
+                    </div>
+                </div>
+
+                <div class="hero-gfx-content">
+                    <!-- Elegant simulated video viewport / streaming monitor -->
+                    <div class="esports-monitor">
+                        <div class="monitor-header">
+                            <span class="red-dot"></span> <span class="live-label">LIVE STREAM DIRECT</span>
+                            <span class="viewer-count"><i class="fa-solid fa-eye"></i> 14,842</span>
+                        </div>
+                        <div class="monitor-screen" id="simulated-stream-screen">
+                            <div class="screen-overlay">
+                                <span class="map-label">MAP: NUKE</span>
+                                <span class="tourney-label">GRANDE FINALE</span>
+                            </div>
+                            
+                            <!-- Live Score overlay inside screen -->
+                            <div class="live-stream-teams">
+                                <div class="stream-team text-right">
+                                    <span class="logo">🐝</span>
+                                    <span class="name">VIT</span>
+                                    <span class="score score-vibrant" id="stream-score-a">8</span>
+                                </div>
+                                <div class="stream-vs">VS</div>
+                                <div class="stream-team text-left">
+                                    <span class="score score-vibrant" id="stream-score-b">7</span>
+                                    <span class="name">NAVI</span>
+                                    <span class="logo">⚡</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Simulated round actions overlay -->
+                            <div class="stream-dynamic-ticker" id="stream-dynamic-ticker">
+                                <i class="fa-solid fa-burst"></i> Vitality remporte le round 15 : ZywOo triple-kill AWP.
+                            </div>
+                        </div>
+                        <div class="monitor-stand"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ABOUT / L'ÉVÉNEMENT (5 DOMAINES LOGISTIQUES) -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">L'Organisation de l'Événement</h2>
+                    <p class="section-subtitle">5 domaines clés gérés de main de maître par EventAndParty pour assurer le succès de cette édition 2026.</p>
+                </div>
+
+                <div class="grid-5-domains">
+                    <!-- Lieu -->
+                    <div class="domain-card">
+                        <div class="domain-icon"><i class="fa-solid fa-building-user"></i></div>
+                        <h3 class="domain-title">1. Lieu & Espaces</h3>
+                        <p class="domain-desc">
+                            Organisé au prestigieux complexe de <strong>La Marive à Yverdon-les-Bains</strong>. Zone spectateurs de 500 places assises avec scène géante et 4 cabines de jeu insonorisées professionnelles pour les équipes.
+                        </p>
+                    </div>
+
+                    <!-- Hébergement -->
+                    <div class="domain-card">
+                        <div class="domain-icon"><i class="fa-solid fa-hotel"></i></div>
+                        <h3 class="domain-title">2. Hébergement</h3>
+                        <p class="domain-desc">
+                            Prise en charge intégrale des 4 équipes d’élites participantes dans un hôtel partenaire 4 étoiles d’Yverdon. Restauration de qualité adaptée aux sportifs (budget CHF 50/personne/jour).
+                        </p>
+                    </div>
+
+                    <!-- Sécurité -->
+                    <div class="domain-card">
+                        <div class="domain-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="domain-title">3. Sécurité</h3>
+                        <p class="domain-desc">
+                            Sécurité physique assurée sur site 24h/24 par <strong>Securitas SA</strong> pour le contrôle des flux et des accès. Sécurité informatique renforcée pour les serveurs et le portail de paiement (protection anti-DDoS, SSL, 2FA).
+                        </p>
+                    </div>
+
+                    <!-- Logistique -->
+                    <div class="domain-card">
+                        <div class="domain-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                        <h3 class="domain-title">4. Logistique</h3>
+                        <p class="domain-desc">
+                            Navettes dédiées gare-salle. Matériel gaming ultra haut de gamme : PC équipés de RTX 4080, écrans 360Hz, sièges ergonomiques et périphériques compétitifs officiels fournis pour une équité parfaite.
+                        </p>
+                    </div>
+
+                    <!-- Communication -->
+                    <div class="domain-card">
+                        <div class="domain-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                        <h3 class="domain-title">5. Communication</h3>
+                        <p class="domain-desc">
+                            Campagnes actives sur TikTok, Instagram, X (Twitter) et flyers locaux. Diffusion de la grande finale en direct avec casteurs professionnels sur Twitch et portail web interactif complet.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TICKETING / BILLETTERIE -->
+        <section class="tickets-section" id="tickets">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Billetterie Officielle</h2>
+                    <p class="section-subtitle">Achetez vos places en ligne de manière sécurisée. Les stocks sont limités à 500 spectateurs par jour !</p>
+                </div>
+
+                <div class="tickets-grid" id="tickets-cards-grid">
+                    <!-- Dynamic ticket cards will load here -->
+                    <div class="loading-state">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i> Chargement de la billetterie...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PARKING INFORMATION & MAP -->
+        <section class="parking-section" id="parking">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><i class="fa-solid fa-parking text-primary"></i> Informations de Stationnement</h2>
+                    <p class="section-subtitle">Trouvez facilement une place de parking pour accéder à La Marive à Yverdon-les-Bains.</p>
+                </div>
+
+                <div class="parking-layout-grid">
+                    <!-- PARKING MAP -->
+                    <div class="parking-map-container">
+                        <div id="parking-map" class="parking-map"></div>
+                    </div>
+
+                    <!-- PARKING INFORMATION PANEL -->
+                    <div class="parking-info-panel">
+                        <h3 class="panel-title"><i class="fa-solid fa-info-circle text-primary"></i> Parkings Officiels</h3>
+
+                        <!-- PARKING BLOCK 1: LA MARIVE MAIN PARKING -->
+                        <div class="parking-block" id="parking-block-main">
+                            <div class="parking-header">
+                                <div class="parking-name">
+                                    <h4>Parking La Marive</h4>
+                                    <span class="parking-type">Officiel</span>
+                                </div>
+                                <div class="parking-status available" id="parking-status-main">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Places Disponibles</span>
+                                </div>
+                            </div>
+                            <div class="parking-details">
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-location-dot text-primary"></i>
+                                    <span>Quai de la Thièle 2, 1400 Yverdon-les-Bains</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-square-parking text-primary"></i>
+                                    <span id="parking-spaces-main">350 places disponibles</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-clock text-primary"></i>
+                                    <span>Accessible 24/7 pendant l'événement</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-tag text-primary"></i>
+                                    <span>Gratuit pour les spectateurs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PARKING BLOCK 2: SECONDARY PARKING -->
+                        <div class="parking-block" id="parking-block-secondary">
+                            <div class="parking-header">
+                                <div class="parking-name">
+                                    <h4>Parking Centre Dortaux</h4>
+                                    <span class="parking-type">Secondaire</span>
+                                </div>
+                                <div class="parking-status available" id="parking-status-secondary">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Places Disponibles</span>
+                                </div>
+                            </div>
+                            <div class="parking-details">
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-location-dot text-primary"></i>
+                                    <span>Avenue de Menloup 2, 1400 Yverdon-les-Bains</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-square-parking text-primary"></i>
+                                    <span id="parking-spaces-secondary">280 places disponibles</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-walking text-primary"></i>
+                                    <span>~10 min à pied de La Marive</span>
+                                </div>
+                                <div class="detail-row">
+                                    <i class="fa-solid fa-tag text-primary"></i>
+                                    <span>CHF 2.00 / heure</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PARKING TIPS -->
+                        <div class="parking-tips-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i> Conseils Pratiques</h4>
+                            <ul>
+                                <li>Arriez-vous tôt pour garantir une place prés du lieu</li>
+                                <li>Le parking La Marive est situé directement à l'entrée de l'événement</li>
+                                <li>Navette gratuite depuis le parking Centre Dortaux</li>
+                                <li>Places PMR réservées à proximité de l'entrée</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LIVE TOURNAMENT RESULTS & BRACKETS -->
+        <section class="live-section" id="live">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="pulse-dot"></span> Résultats et Programme en Direct</h2>
+                    <p class="section-subtitle">Suivez l'avancement des brackets de l'Event CS 2026 en temps réel.</p>
+                </div>
+
+                <div class="live-layout-grid">
+                    
+                    <!-- LEFT COLUMN: MATCHES BRACKET / CALENDAR -->
+                    <div class="bracket-panel">
+                        <h3 class="panel-title"><i class="fa-solid fa-sitemap text-primary"></i> Calendrier du Tournoi</h3>
+                        
+                        <div class="matches-list" id="matches-list-container">
+                            <!-- Dynamic match list elements inject here -->
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: CHOSEN LIVE/COMPLETED MATCH DETAILED VIEWER -->
+                    <div class="match-detail-panel" id="match-detail-viewer">
+                        <!-- Loaded dynamically inside JS -->
+                        <div class="panel-empty-state">
+                            <i class="fa-solid fa-gamepad"></i>
+                            <p>Sélectionnez un match à gauche pour voir les détails des manches et les logs de kills en direct !</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ADMIN SECURE LOGIN & 2FA BACK-OFFICE SECTION -->
+    <!-- Displayed inside a overlay modal/full view when "Admin Portal" is clicked -->
+    <div class="admin-full-overlay" id="admin-full-overlay">
+        <div class="admin-panel-container">
+            <div class="admin-panel-header">
+                <h2><i class="fa-solid fa-user-shield text-primary"></i> ESPACE ADMINISTRATEUR — EVENT CS 2026</h2>
+                <button class="btn btn-outline btn-sm" id="close-admin-overlay-btn"><i class="fa-solid fa-xmark"></i> Fermer</button>
+            </div>
+
+            <!-- LOGIN VIEW -->
+            <div class="admin-auth-view active" id="admin-login-view">
+                <div class="auth-card">
+                    <h3>Connexion Sécurisée</h3>
+                    <p class="auth-intro">Accès réservé au comité d'organisation EventAndParty.</p>
+                    
+                    <div class="alert alert-info-outline">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span><strong>Démo Facile :</strong> Utilisez email: <code>admin@eventandparty.ch</code> et mot de passe: <code>admin</code></span>
+                    </div>
+
+                    <form id="admin-login-form" class="checkout-form">
+                        <div class="form-group">
+                            <label for="admin-email-field">Adresse Email</label>
+                            <input type="email" id="admin-email-field" required value="admin@eventandparty.ch">
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password-field">Mot de passe</label>
+                            <input type="password" id="admin-password-field" required value="admin">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Se Connecter</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 2FA CHALLENGE VIEW -->
+            <div class="admin-auth-view" id="admin-2fa-view">
+                <div class="auth-card text-center">
+                    <div class="security-shield-icon"><i class="fa-solid fa-key text-primary"></i></div>
+                    <h3>Double Authentification (2FA)</h3>
+                    <p class="auth-intro">Saisissez le code de validation à 6 chiffres envoyé sur votre application d'authentification pour valider la session.</p>
+
+                    <div class="alert alert-warning-outline" id="demo-2fa-box">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span><strong>Sécurité Démo :</strong> Entrez le code généré : <code id="demo-2fa-code-placeholder">123456</code></span>
+                    </div>
+
+                    <form id="admin-2fa-form" class="checkout-form">
+                        <div class="form-group 2fa-inputs-row">
+                            <input type="text" id="2fa-digit" maxlength="6" pattern="[0-9]{6}" class="2fa-input-field" placeholder="123456" autofocus required>
+                        </div>
+                        
+                        <div class="auth-actions mt-3">
+                            <button type="button" class="btn btn-outline btn-block" id="back-to-login-btn">Annuler</button>
+                            <button type="submit" class="btn btn-primary btn-block">Valider l'Accès</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- BACK-OFFICE SECURE PANEL VIEW -->
+            <div class="admin-dashboard-view" id="admin-dashboard-view">
+                <!-- TOP STATS BAR -->
+                <div class="admin-stats-grid">
+                    <!-- Ticket Sales Progress bar against goals CHF 90K - 110K -->
+                    <div class="stat-card span-2">
+                        <div class="stat-card-title">Objectif Financier Globale (Cible: CHF 90K - 110K)</div>
+                        <div class="stat-financial-progress">
+                            <div class="financial-labels">
+                                <span class="val-current" id="financial-val-current">CHF 0.00</span>
+                                <span class="val-target">Cible: CHF 100'000.00</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" id="financial-progress-bar" style="width: 0%"></div>
+                            </div>
+                            <div class="financial-subtext">
+                                <span id="financial-tickets-share">Billetterie: CHF 0</span> + <span id="financial-sponsors-share">Sponsors: CHF 84'200</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-title">Billets Vendu / Reste</div>
+                        <div class="stat-number" id="stat-tickets-sold">0 / 1150</div>
+                        <div class="stat-subtext">Capacité totale combinée</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-title">Mode Administrateur</div>
+                        <div class="stat-online-status">
+                            <span class="status-dot green"></span>
+                            <span>Session Sécurisée Active</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm mt-3" id="admin-logout-btn"><i class="fa-solid fa-power-off"></i> Déconnexion</button>
+                    </div>
+                </div>
+
+                <!-- ADMIN NAVIGATION TABS -->
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" data-tab="admin-tab-tickets"><i class="fa-solid fa-ticket"></i> Gestion Billetterie</button>
+                    <button class="admin-tab-btn" data-tab="admin-tab-orders"><i class="fa-solid fa-receipt"></i> Commandes Spectateurs</button>
+                    <button class="admin-tab-btn" data-tab="admin-tab-matches"><i class="fa-solid fa-gamepad"></i> Gestion des Matchs</button>
+                </div>
+
+                <!-- TAB 1: MANAGE PRODUCTS / TICKETS -->
+                <div class="admin-tab-content active" id="admin-tab-tickets">
+                    <h3 class="panel-title">Catégories de Billets & Inventaires</h3>
+                    
+                    <div class="responsive-table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Nom du Pass</th>
+                                    <th>Description</th>
+                                    <th>Prix (CHF)</th>
+                                    <th>Total Places</th>
+                                    <th>Disponibles</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-tickets-table-body">
+                                <!-- Dynamic ticket rows will load here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 2: MANAGE ORDERS -->
+                <div class="admin-tab-content" id="admin-tab-orders">
+                    <h3 class="panel-title">Commandes et Transactions Récentes</h3>
+                    
+                    <div class="responsive-table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Commande</th>
+                                    <th>Client</th>
+                                    <th>Email</th>
+                                    <th>Détail Articles</th>
+                                    <th>Moyen de Paiement</th>
+                                    <th>Total (CHF)</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-table-body">
+                                <!-- Dynamic order rows will load here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 3: MANAGE TEAMS AND MATCHES -->
+                <div class="admin-tab-content" id="admin-tab-matches">
+                    <h3 class="panel-title">Contrôle du Tournoi & Direct</h3>
+                    <p class="panel-subtitle-helper">Modifiez les scores en direct, changez les statuts des matchs et simulez des actions de jeu en temps réel.</p>
+                    
+                    <div class="admin-matches-control-grid" id="admin-matches-control-container">
+                        <!-- Dynamic match control cards injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TICKET EDIT DIALOG MODAL -->
+    <div class="modal-overlay" id="ticket-edit-modal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="close-ticket-edit-modal"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Modifier la Catégorie</h3>
+            <p class="modal-subtitle">Modifiez le tarif ou l'inventaire des places.</p>
+            
+            <form id="ticket-edit-form" class="checkout-form">
+                <input type="hidden" id="edit-ticket-id">
+                <div class="form-group">
+                    <label for="edit-ticket-name">Nom du Pass</label>
+                    <input type="text" id="edit-ticket-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-ticket-desc">Description</label>
+                    <textarea id="edit-ticket-desc" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-ticket-price">Prix (CHF)</label>
+                        <input type="number" id="edit-ticket-price" step="0.05" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-ticket-total">Total Places</label>
+                        <input type="number" id="edit-ticket-total" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-ticket-avail">Places Dispo.</label>
+                        <input type="number" id="edit-ticket-avail" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Enregistrer les Modifications</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN FOOTER -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-area">
+                    <img src="../../logo/logo.png" alt="WATB Logo" style="height: 40px; margin-right: 10px;">
+                    <span class="logo-text">EVENT<span class="text-primary font-orbitron">CS</span></span>
+                </div>
+                <p class="footer-desc">
+                    L'événement Esport majeur de l'année 2026 à Yverdon-les-Bains. Vivez l'adrénaline de la compétition en direct !
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#about">L'Événement</a></li>
+                    <li><a href="#tickets">Billetterie</a></li>
+                    <li><a href="#live">Résultats</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Partenaires Officiels</h4>
+                <div class="sponsors-grid-footer">
+                    <span>Logitech G</span>
+                    <span>Securitas SA</span>
+                    <span>Ville d'Yverdon</span>
+                    <span>EventAndParty</span>
+                </div>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Nous Contacter</h4>
+                <p><i class="fa-regular fa-envelope text-primary"></i> contact@eventandparty.ch</p>
+                <p><i class="fa-solid fa-phone text-primary"></i> +41 24 423 60 00</p>
+                <p><i class="fa-solid fa-map-location-dot text-primary"></i> La Marive, Quai de la Thièle 2, 1400 Yverdon-les-Bains</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>&copy; 2026 EventAndParty. Tous droits réservés. Développé pour la gestion Agile/Kanban Event CS 2026.</p>
+                <p>Date de l'événement : 23 - 24 Mai 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

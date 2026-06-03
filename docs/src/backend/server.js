@@ -236,10 +236,35 @@ app.get('/api/tickets', (req, res) => {
 
 // Purchase tickets
 app.post('/api/tickets/purchase', (req, res) => {
-  const { name, email, paymentMethod, items } = req.body;
+  const { name, email, paymentMethod, items, cardBrand, cardNumberMasked } = req.body;
 
   if (!name || !email || !paymentMethod || !items || !items.length) {
     return res.status(400).json({ error: 'Données de commande incomplètes.' });
+  }
+
+  // Server-side email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Format d\'adresse e-mail invalide.' });
+  }
+
+  // Server-side name validation
+  if (typeof name !== 'string' || name.trim().length < 2) {
+    return res.status(400).json({ error: 'Le nom complet doit comporter au moins 2 caractères.' });
+  }
+
+  // Server-side payment card validation
+  if (paymentMethod === 'Carte de Crédit') {
+    if (!cardBrand || !cardNumberMasked) {
+      return res.status(400).json({ error: 'Informations de carte bancaire manquantes ou incomplètes.' });
+    }
+    const validBrands = ['VISA', 'MASTERCARD', 'AMEX'];
+    if (!validBrands.includes(cardBrand)) {
+      return res.status(400).json({ error: 'Réseau de carte bancaire non supporté.' });
+    }
+    if (!/^\*\*\*\* \*\*\*\* \*\*\*\* \d{4}$/.test(cardNumberMasked)) {
+      return res.status(400).json({ error: 'Format du numéro de carte masqué invalide.' });
+    }
   }
 
   // Verify and update quantities
@@ -247,6 +272,11 @@ app.post('/api/tickets/purchase', (req, res) => {
   const purchasedItems = [];
 
   for (const item of items) {
+    // Validate quantities strictly
+    if (!Number.isInteger(item.quantity) || item.quantity <= 0) {
+      return res.status(400).json({ error: 'La quantité de billets doit être un entier positif.' });
+    }
+
     const category = ticketCategories.find(c => c.id === item.categoryId);
     if (!category) {
       return res.status(404).json({ error: `Catégorie de billet ID ${item.categoryId} inexistante.` });
@@ -263,15 +293,21 @@ app.post('/api/tickets/purchase', (req, res) => {
     });
   }
 
+  // Format payment method with card details for the admin portal display
+  let displayMethod = paymentMethod;
+  if (paymentMethod === 'Carte de Crédit') {
+    displayMethod = `Carte (${cardBrand.charAt(0) + cardBrand.slice(1).toLowerCase()}) ${cardNumberMasked}`;
+  }
+
   // Create order
   const orderId = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
   const newOrder = {
     id: orderId,
-    name,
-    email,
+    name: name.trim(),
+    email: email.trim(),
     items: purchasedItems,
     total: totalCost,
-    method: paymentMethod,
+    method: displayMethod,
     status: 'Payé',
     date: new Date().toISOString()
   };
