@@ -107,6 +107,21 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function generateFinishedScore() {
+    const winnerScore = 13;
+    const loserScore = getRandomInt(0, 12);
+    if (Math.random() < 0.5) {
+        return { scoreA: winnerScore, scoreB: loserScore };
+    }
+    return { scoreA: loserScore, scoreB: winnerScore };
+}
+
+function generateOngoingScore() {
+    const scoreA = getRandomInt(0, 11);
+    const scoreB = getRandomInt(0, 11);
+    return { scoreA, scoreB };
+}
+
 function generateTournamentMatches() {
     const shuffledTeams = [...teams].sort(() => Math.random() - 0.5);
     const startDate = new Date(2026, 4, 23, 10, 0); // 23 May 2026
@@ -123,6 +138,8 @@ function generateTournamentMatches() {
         matchDate.setDate(startDate.getDate() + dayOffset);
         matchDate.setHours(Number(slots[i].split(':')[0]));
         matchDate.setMinutes(Number(slots[i].split(':')[1]));
+        const status = i === 0 ? 'Live' : Math.random() < 0.5 ? 'Terminé' : 'En cours';
+        const { scoreA, scoreB } = status === 'Terminé' ? generateFinishedScore() : generateOngoingScore();
 
         tournamentMatches.push({
             id: `match-${i + 1}`,
@@ -131,9 +148,9 @@ function generateTournamentMatches() {
             teamB,
             date: matchDate,
             time: slots[i],
-            status: i === 0 ? 'Live' : i === 5 ? 'À venir' : 'En cours',
-            scoreA: getRandomInt(0, 16),
-            scoreB: getRandomInt(0, 16),
+            status,
+            scoreA,
+            scoreB,
             map: ['Nuke', 'Inferno', 'Mirage', 'Dust2', 'Ancient'][getRandomInt(0, 4)],
             logs: [
                 `${teamA} domine les premiers rounds.`,
@@ -194,7 +211,7 @@ function renderMatches() {
     selectors.matchesList.innerHTML = '';
 
     tournamentMatches.forEach((match) => {
-        const statusClass = match.status === 'Live' ? 'live' : match.status === 'À venir' ? 'upcoming' : 'ongoing';
+        const statusClass = match.status === 'Live' ? 'live' : match.status === 'Terminé' ? 'completed' : 'ongoing';
         const matchItem = document.createElement('div');
         matchItem.className = `match-item${selectedMatchId === match.id ? ' active' : ''}`;
         matchItem.dataset.matchId = match.id;
