@@ -29,19 +29,17 @@ Le projet respecte scrupuleusement la structure de dossiers suivante :
 
 ```
   Event CS
-├── docs/                 # Documentation du projet
-│   └── cahier_des_charges.md  # Fiche des spécifications détaillées
-├── src/                  # Code source du site web
-│   ├── frontend/         # HTML5, CSS3, ES6 JavaScript (Front-office)
-│   │   ├── index.html    # Page principale unique (SPA structure)
-│   │   ├── styles.css    # Thème violet gaming et animations
-│   │   └── app.js        # Logique de navigation, cart & requêtes API
-│   ├── backend/          # Node.js / Express.js
-│   │   └── server.js     # Serveur web, simulation DB & flux de direct
-│   └── database/         # Scripts SQL (schéma, seed)
-│       └── schema.sql    # Schéma SQL PostgreSQL & données de départ
-├── package.json          # Dépendances Node.js et scripts de lancement
-└── README.md             # Présentation du projet (ce fichier)
+├── docs/                       # Documentation du projet
+│   └── cahier_des_charges.md   # Cahier des charges au format Markdown
+├── logo/                       # Logos et images du projet
+├── maquette/                   # Maquettes graphiques (UI)
+├── node_modules/               # Dépendances et modules de l'application (généré automatiquement)
+├── src/                        # Code source du site web
+│   ├── backend/                # Partie Serveur (Node.js / Express.js)
+│   ├── database/               # Scripts SQL (Base de données MySQL)
+│   └── frontend/               # Interface utilisateur (front-office)
+├── package.json                # Dépendances Node.js et scripts de lancement
+└── README.md                   # Guide d'installation technique et User Stories (Localhost)
 ```
 
 ---
