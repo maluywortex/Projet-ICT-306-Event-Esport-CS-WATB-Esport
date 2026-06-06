@@ -6,22 +6,22 @@
 
 /* --- CSS VARIABLES & TOKENS --- */
 :root {
-    --bg-deep: #080314;
-    --bg-dark: #0f0723;
+    --bg-deep: #07081a;
+    --bg-dark: #05162b;
     --bg-card: #180b33;
     --bg-input: #120726;
-    --primary: #a855f7;
-    --primary-glow: #c084fc;
-    --primary-dark: #7e22ce;
+    --primary: #cecb3f;
+    --primary-glow: #b6b321;
+    --primary-dark: #a2ad06;
     --accent: #ec4899;
-    --accent-glow: #f472b6;
+    --accent-glow: #d6d6d6;
     --cyan: #06b6d4;
     --success: #10b981;
     --warning: #f59e0b;
-    --danger: #ef4444;
+    --danger: #bb1d1d;
     --text-main: #f3e8ff;
     --text-muted: #a78bfa;
-    --border-color: #3b2272;
+    --border-color: #b6c52f;
     --glass-bg: rgba(24, 11, 51, 0.6);
     --glass-border: rgba(168, 85, 247, 0.2);
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
