@@ -12,6 +12,7 @@ Projet ICT-306 , Event Esport CS WATB Esport . Ce projet est une evenemnt Esport
 - [6. Prérequis](#6-prérequis)
   - [6.1 Logiciels et language de code](#6.1-logiciels-language-de-code)
   - [6.2 Navigateurs](#6.2-navigateurs)
+  - [6.3 Stack Technologique Frontend](#6.3-stack-technologique-frontend)
 - [7. Planning prévisionnel](#7-planning-prévisionnel)
 - [8. Livrables attendus](#8-livrables-attendus)
   - [8.1 Livrables techniques](#8.1-livrables-techniques)
@@ -121,6 +122,15 @@ Envoi de mailings aux spectateurs inscrits
  - Microsoft Edge
  - Mobile : Chrome Android, Safari iOS
 
+  
+  ### 6.3 Stack Technologique Frontend
+  - HTML5 sémantique avec structure SPA
+  - CSS3 avec variables CSS, Flexbox, Grid et animations keyframes
+  - JavaScript ES6+ avec gestion d'état et requêtes API fetch
+  - FontAwesome 6.4.0 pour les icônes
+  - Google Fonts : Inter et Orbitron
+
+    
   ## 7. Planning prévisionnel
 
 - Semaine 1        Choix du sujet
