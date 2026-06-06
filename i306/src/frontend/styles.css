@@ -817,6 +817,14 @@ button, input, textarea, select {
     color: var(--accent);
 }
 
+.match-status-badge.ongoing {
+    color: var(--primary);
+}
+
+.match-status-badge.upcoming {
+    color: var(--warning);
+}
+
 .match-status-badge.completed {
     color: var(--success);
 }
