@@ -10,7 +10,7 @@ Projet ICT-306 , Event Esport CS WATB Esport . Ce projet est une evenemnt Esport
 - [4. Architecture global](#4-architecture-global)
 - [5. Organisation du dépôt](#5-organisation-du-dépôt)
 - [6. Prérequis](#6-prérequis)
-  - [6.1 Logiciels et language de code](#61-logiciels-language-de-code)
+  - [6.1 Logiciels et langages de code](#61-logiciels-et-langages-de-code)
   - [6.2 Navigateurs](#62-navigateurs)
   - [6.3 Stack Technologique Frontend](#63-stack-technologique-frontend)
 - [7. Planning prévisionnel](#7-planning-prévisionnel)
@@ -18,7 +18,6 @@ Projet ICT-306 , Event Esport CS WATB Esport . Ce projet est une evenemnt Esport
   - [8.1 Livrables techniques](#81-livrables-techniques)
   - [8.2 Livrables organisationnels et documentaires](#82-livrables-organisationnels-et-documentaires)
 - [9. Conclusion](#9-conclusion)
-
   ---
 
   ## 1. Introduction
