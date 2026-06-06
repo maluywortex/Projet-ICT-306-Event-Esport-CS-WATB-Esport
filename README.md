@@ -18,7 +18,8 @@ Projet ICT-306 , Event Esport CS WATB Esport . Ce projet est une evenemnt Esport
   - [8.1 Livrables techniques](#81-livrables-techniques)
   - [8.2 Livrables organisationnels et documentaires](#82-livrables-organisationnels-et-documentaires)
 - [9. Conclusion](#9-conclusion)
-  ---
+
+---
 
   ## 1. Introduction
 
@@ -31,7 +32,7 @@ Le projet comprend la gestion du tournoi, la logistique, la sécurité, l’héb
 
 Ce dépôt GitHub regroupe l’ensemble des ressources liées au projet : développement du site web, organisation technique, documentation, gestion des tâches et suivi du projet via une méthodologie Agile/Kanban.
 
-
+---
 
   ## 2. Objectifs
 
@@ -40,6 +41,8 @@ Offrir des conditions optimales de confort, sécurité et performance pour les j
 Développer un site web fonctionnel permettant l'inscription, l'achat de billets et le suivi des résultats en direct
 Assurer la coordination complète des prestataires (salle, hébergement, sécurité, restauration, matériel)
 Atteindre un objectif financier de CHF 90'000 – 110'000 grâce aux sponsors, à la billetterie et aux ventes diverses
+
+---
 
   ## 3. Description du projet
 
@@ -69,6 +72,8 @@ Gestion du contenu, des équipes et des inscriptions
 Mise à jour du programme des matchs et des résultats en direct
 Envoi de mailings aux spectateurs inscrits
 
+---
+
   ## 4. Architecture global
 ```
   Event CS
@@ -90,6 +95,9 @@ Envoi de mailings aux spectateurs inscrits
 └── Gestion de projet
     └── Kanban GitHub (Issues, Projects)
 ```
+
+---
+
   ## 5. Organisation du dépôt
 ```
   
@@ -105,6 +113,9 @@ Envoi de mailings aux spectateurs inscrits
 |       └── README.md           # Documentation sur le frontend
 └── README.md                   # Fichier d'accueil et documentation principale
 ```
+
+---
+
   ## 6. Prérequis
   ### 6.1 Logiciels et languages de code
   - Vs code
@@ -130,7 +141,8 @@ Envoi de mailings aux spectateurs inscrits
   - JavaScript ES6+ avec gestion d'état et requêtes API fetch
   - FontAwesome 6.4.0 pour les icônes
   - Google Fonts : Inter et Orbitron
-
+    
+---
     
   ## 7. Planning prévisionnel
 
@@ -143,6 +155,8 @@ Envoi de mailings aux spectateurs inscrits
 - Semaine 7        Réalisation
 - Semaine 8        Réalisation
 
+---
+
   ## 8. Livrables attendus
   ### 8.1 Livrables techniques
 - Site web fonctionnel (front-office + back-office)
@@ -152,6 +166,8 @@ Envoi de mailings aux spectateurs inscrits
 - Base de données MySQL opérationnelle
 - Documentation technique (installation, déploiement)
 
+---
+
   ### 8.2 Livrables organisationnels et documentaires
  - Cahier des charges complet
  - Maquettes graphiques validées
@@ -159,6 +175,8 @@ Envoi de mailings aux spectateurs inscrits
  - Plan de communication (réseaux sociaux, flyers)
  - Coordination des prestataires (salle La Marive, Securitas SA, hôtel, traiteur)
  - Formation à la gestion du back-office pour le store manager
+
+---
 
   ## 9. Conclusion
   
