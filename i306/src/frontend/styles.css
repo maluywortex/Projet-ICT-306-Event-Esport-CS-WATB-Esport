@@ -720,6 +720,20 @@ button, input, textarea, select {
     font-weight: 700;
 }
 
+.ticket-action-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.ticket-action-group .btn-sm {
+    padding: 8px 14px;
+}
+
+
+
 /* --- LIVE DRAWER / BRACKETS --- */
 .live-section {
     padding: 100px 0;
@@ -1558,21 +1572,6 @@ input:focus, textarea:focus {
     font-size: 4rem;
     margin-bottom: 20px;
 }
-
-.2fa-inputs-row {
-    display: flex;
-    justify-content: center;
-}
-
-.2fa-input-field {
-    width: 160px;
-    font-size: 1.8rem;
-    text-align: center;
-    letter-spacing: 4px;
-    font-family: var(--font-gaming);
-    font-weight: 700;
-}
-
 /* Admin Dashboard View */
 .admin-dashboard-view {
     display: none;

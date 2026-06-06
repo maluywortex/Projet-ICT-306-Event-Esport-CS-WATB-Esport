@@ -452,10 +452,89 @@
                 </div>
 
                 <div class="tickets-grid" id="tickets-cards-grid">
-                    <!-- Dynamic ticket cards will load here -->
-                    <div class="loading-state">
-                        <i class="fa-solid fa-circle-notch fa-spin"></i> Chargement de la billetterie...
+                    <!-- Ticket Cards: Silver / Gold / VIP -->
+
+                    <div class="ticket-card">
+                        <div class="ticket-tag">Standard</div>
+                        <div>
+                            <h3 class="ticket-name">Silver Pass</h3>
+                            <p class="ticket-desc">Accès journée standard — idéal pour les spectateurs occasionnels.</p>
+                        </div>
+
+                        <div class="ticket-stock">Options</div>
+                        <div class="stock-indicator-bar" aria-hidden>
+                            <div class="stock-indicator-fill" style="width:80%"></div>
+                        </div>
+
+                        <div class="ticket-price-row">
+                            <div>
+                                <div class="price-val font-orbitron">CHF 15–20</div>
+                                <div class="price-currency">Entrée 1 jour</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <small style="display:block; color:var(--text-muted)">Pass 2 jours: CHF 25–35</small>
+                            </div>
+                        </div>
+                        <div class="ticket-action-group">
+                            <button class="btn btn-primary btn-sm add-ticket-btn" data-ticket-id="silver" data-duration="1" data-price="15">1 jour — CHF 15</button>
+                            <button class="btn btn-outline btn-sm add-ticket-btn" data-ticket-id="silver" data-duration="2" data-price="25">2 jours — CHF 25</button>
+                        </div>
                     </div>
+
+                    <div class="ticket-card">
+                        <div class="ticket-tag">Premium</div>
+                        <div>
+                            <h3 class="ticket-name">Gold Pass</h3>
+                            <p class="ticket-desc">Meilleure visibilité et accès prioritaire aux zones communautaires.</p>
+                        </div>
+
+                        <div class="ticket-stock">Options</div>
+                        <div class="stock-indicator-bar" aria-hidden>
+                            <div class="stock-indicator-fill" style="width:60%"></div>
+                        </div>
+
+                        <div class="ticket-price-row">
+                            <div>
+                                <div class="price-val font-orbitron">CHF 25–35</div>
+                                <div class="price-currency">Entrée 1 jour</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <small style="display:block; color:var(--text-muted)">Pass 2 jours: CHF 35–45</small>
+                            </div>
+                        </div>
+                        <div class="ticket-action-group">
+                            <button class="btn btn-primary btn-sm add-ticket-btn" data-ticket-id="gold" data-duration="1" data-price="25">1 jour — CHF 25</button>
+                            <button class="btn btn-outline btn-sm add-ticket-btn" data-ticket-id="gold" data-duration="2" data-price="35">2 jours — CHF 35</button>
+                        </div>
+                    </div>
+
+                    <div class="ticket-card vip">
+                        <div class="ticket-tag">VIP</div>
+                        <div>
+                            <h3 class="ticket-name">VIP — Places Premium</h3>
+                            <p class="ticket-desc">Accès premium, loges, sièges privilégiés et package exclusif.</p>
+                        </div>
+
+                        <div class="ticket-stock">Places limitées</div>
+                        <div class="stock-indicator-bar" aria-hidden>
+                            <div class="stock-indicator-fill" style="width:30%"></div>
+                        </div>
+
+                        <div class="ticket-price-row">
+                            <div>
+                                <div class="price-val font-orbitron">CHF 50–80</div>
+                                <div class="price-currency">VIP (places premium)</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <small style="display:block; color:var(--text-muted)">Accès & avantages exclusifs</small>
+                            </div>
+                        </div>
+                        <div class="ticket-action-group">
+                            <button class="btn btn-primary btn-sm add-ticket-btn" data-ticket-id="vip" data-duration="1" data-price="50">1 jour — CHF 50</button>
+                            <button class="btn btn-outline btn-sm add-ticket-btn" data-ticket-id="vip" data-duration="2" data-price="80">2 jours — CHF 80</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
