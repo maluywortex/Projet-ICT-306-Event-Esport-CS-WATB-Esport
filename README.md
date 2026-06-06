@@ -110,8 +110,8 @@ Envoi de mailings aux spectateurs inscrits
 │   ├── backend/                # Partie Serveur (Node.js / Express.js)
 │   ├── database/               # Scripts SQL (Base de données MySQL)
 │   └── frontend/               # Interface utilisateur (front-office)
-|       └── README.md           # Documentation sur le frontend
-└── README.md                   # Fichier d'accueil et documentation principale
+├── package.json                # Dépendances Node.js et scripts de lancement
+└── README.md                   # Guide d'installation technique et User Stories (Localhost)
 ```
 
 ---
