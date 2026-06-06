@@ -94,15 +94,17 @@ Envoi de mailings aux spectateurs inscrits
   ## 5. Organisation du dépôt
 ```
   
-├── src/                  # Code source du site web
-│   ├── frontend/         # HTML, CSS, JS (front-office)
-│   ├── backend/          # Node.js / Express.js
-│   └── database/         # Scripts SQL (schéma, seed)
-├── docs/                 # Documentation du projet
-│   ├── cahier_des_charges.docx
-│   └── maquettes/        # Maquettes graphiques (UI)
-├── public/               # Assets statiques (images, logos)
-└── README.md
+├── docs/                       # Documentation du projet
+│   └── cahier_des_charges.md   # Cahier des charges au format Markdown
+├── logo/                       # Logos et images du projet
+├── maquette/                   # Maquettes graphiques (UI)
+├── node_modules/               # Dépendances et modules de l'application (généré automatiquement)
+├── src/                        # Code source du site web
+│   ├── backend/                # Partie Serveur (Node.js / Express.js)
+│   ├── database/               # Scripts SQL (Base de données MySQL)
+│   └── frontend/               # Interface utilisateur (front-office)
+|       └── README.md           # Documentation sur le frontend
+└── README.md                   # Fichier d'accueil et documentation principale
 ```
   ## 6. Prérequis
   ### 6.1 Logiciel et language de code
