@@ -10,16 +10,16 @@ Projet ICT-306 , Event Esport CS WATB Esport . Ce projet est une evenemnt Esport
 - [4. Architecture global](#4-architecture-global)
 - [5. Organisation du dépôt](#5-organisation-du-dépôt)
 - [6. Prérequis](#6-prérequis)
-  - [6.1 Logiciels et language de code](#6.1-logiciels-language-de-code)
-  - [6.2 Navigateurs](#6.2-navigateurs)
-  - [6.3 Stack Technologique Frontend](#6.3-stack-technologique-frontend)
+  - [6.1 Logiciels et languages de code](#61-logiciels-et-languages-de-code)
+  - [6.2 Navigateurs](#62-navigateurs)
+  - [6.3 Stack Technologique Frontend](#63-stack-technologique-frontend)
 - [7. Planning prévisionnel](#7-planning-prévisionnel)
 - [8. Livrables attendus](#8-livrables-attendus)
-  - [8.1 Livrables techniques](#8.1-livrables-techniques)
-  - [8.2 Livrables organisationnels et documentaires](#8.2-livrables-organisationnels-et-documentaires)
+  - [8.1 Livrables techniques](#81-livrables-techniques)
+  - [8.2 Livrables organisationnels et documentaires](#82-livrables-organisationnels-et-documentaires)
 - [9. Conclusion](#9-conclusion)
 
-  ---
+---
 
   ## 1. Introduction
 
@@ -32,7 +32,7 @@ Le projet comprend la gestion du tournoi, la logistique, la sécurité, l’héb
 
 Ce dépôt GitHub regroupe l’ensemble des ressources liées au projet : développement du site web, organisation technique, documentation, gestion des tâches et suivi du projet via une méthodologie Agile/Kanban.
 
-
+---
 
   ## 2. Objectifs
 
@@ -41,6 +41,8 @@ Offrir des conditions optimales de confort, sécurité et performance pour les j
 Développer un site web fonctionnel permettant l'inscription, l'achat de billets et le suivi des résultats en direct
 Assurer la coordination complète des prestataires (salle, hébergement, sécurité, restauration, matériel)
 Atteindre un objectif financier de CHF 90'000 – 110'000 grâce aux sponsors, à la billetterie et aux ventes diverses
+
+---
 
   ## 3. Description du projet
 
@@ -70,6 +72,8 @@ Gestion du contenu, des équipes et des inscriptions
 Mise à jour du programme des matchs et des résultats en direct
 Envoi de mailings aux spectateurs inscrits
 
+---
+
   ## 4. Architecture global
 ```
   Event CS
@@ -91,21 +95,29 @@ Envoi de mailings aux spectateurs inscrits
 └── Gestion de projet
     └── Kanban GitHub (Issues, Projects)
 ```
+
+---
+
   ## 5. Organisation du dépôt
 ```
   
-├── src/                  # Code source du site web
-│   ├── frontend/         # HTML, CSS, JS (front-office)
-│   ├── backend/          # Node.js / Express.js
-│   └── database/         # Scripts SQL (schéma, seed)
-├── docs/                 # Documentation du projet
-│   ├── cahier_des_charges.docx
-│   └── maquettes/        # Maquettes graphiques (UI)
-├── public/               # Assets statiques (images, logos)
-└── README.md
+├── docs/                       # Documentation du projet
+│   └── cahier_des_charges.md   # Cahier des charges au format Markdown
+├── logo/                       # Logos et images du projet
+├── maquette/                   # Maquettes graphiques (UI)
+├── node_modules/               # Dépendances et modules de l'application (généré automatiquement)
+├── src/                        # Code source du site web
+│   ├── backend/                # Partie Serveur (Node.js / Express.js)
+│   ├── database/               # Scripts SQL (Base de données MySQL)
+│   └── frontend/               # Interface utilisateur (front-office)
+├── package.json                # Dépendances Node.js et scripts de lancement
+└── README.md                   # Guide d'installation technique et User Stories (Localhost)
 ```
+
+---
+
   ## 6. Prérequis
-  ### 6.1 Logiciel et language de code
+  ### 6.1 Logiciels et languages de code
   - Vs code
   - HTML
   - CSS
@@ -114,7 +126,7 @@ Envoi de mailings aux spectateurs inscrits
   - MySQL     
 
   
-  ### 6.2 Navigateur
+  ### 6.2 Navigateurs
 
  - Google Chrome
  - Mozilla Firefox
@@ -129,7 +141,8 @@ Envoi de mailings aux spectateurs inscrits
   - JavaScript ES6+ avec gestion d'état et requêtes API fetch
   - FontAwesome 6.4.0 pour les icônes
   - Google Fonts : Inter et Orbitron
-
+    
+---
     
   ## 7. Planning prévisionnel
 
@@ -142,21 +155,28 @@ Envoi de mailings aux spectateurs inscrits
 - Semaine 7        Réalisation
 - Semaine 8        Réalisation
 
+---
+
   ## 8. Livrables attendus
-  ### 8.1 Livravles techniques
+  ### 8.1 Livrables techniques
 - Site web fonctionnel (front-office + back-office)
 - Système d'inscription et de paiement en ligne
 - Module de résultats en direct
 - Authentification sécurisée avec 2FA
 - Base de données MySQL opérationnelle
 - Documentation technique (installation, déploiement)
-  ### 8.2 Livrable organisationnels et documentaires
+
+---
+
+  ### 8.2 Livrables organisationnels et documentaires
  - Cahier des charges complet
  - Maquettes graphiques validées
  - Backlog et tableau Kanban mis à jour
  - Plan de communication (réseaux sociaux, flyers)
  - Coordination des prestataires (salle La Marive, Securitas SA, hôtel, traiteur)
  - Formation à la gestion du back-office pour le store manager
+
+---
 
   ## 9. Conclusion
   
