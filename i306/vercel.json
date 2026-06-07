@@ -3,6 +3,10 @@
   "public": "src/frontend",
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/src/frontend/index.html"
     }
