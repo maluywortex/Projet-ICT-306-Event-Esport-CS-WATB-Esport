@@ -2039,6 +2039,12 @@ input:focus, textarea:focus {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 40px;
+        justify-items: center;
+    }
+
+    .hero-text-content,
+    .hero-gfx-content {
+        width: 100%;
     }
     
     .hero-title { font-size: 2.8rem; }
@@ -2047,6 +2053,8 @@ input:focus, textarea:focus {
         flex-direction: column;
         gap: 20px;
         align-items: center;
+        max-width: 520px;
+        margin: 0 auto 40px auto;
     }
     
     .hero-cta-group {
