@@ -2001,6 +2001,40 @@ input:focus, textarea:focus {
 
 /* --- RESPONSIVENESS --- */
 @media (max-width: 900px) {
+    .main-header {
+        position: relative;
+        height: auto;
+        padding: 14px 0;
+    }
+
+    .header-container {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: space-between;
+    }
+
+    .nav-menu {
+        width: 100%;
+    }
+
+    .nav-menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .hero-section {
+        padding: 60px 0 80px;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -2008,14 +2042,22 @@ input:focus, textarea:focus {
     }
     
     .hero-title { font-size: 2.8rem; }
-    .hero-tagline { margin: 0 auto 30px auto; }
+    .hero-tagline { margin: 0 auto 30px auto; max-width: 100%; }
     .event-details-bar {
         flex-direction: column;
         gap: 20px;
         align-items: center;
     }
     
-    .hero-cta-group { justify-content: center; }
+    .hero-cta-group {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hero-cta-group .btn {
+        min-width: 170px;
+    }
     
     .live-layout-grid {
         grid-template-columns: 1fr;
@@ -2023,6 +2065,105 @@ input:focus, textarea:focus {
     
     .admin-stats-grid {
         grid-template-columns: 1fr;
+    }
+
+    .ticket-receipt-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cart-drawer {
+        width: min(100%, 360px);
+    }
+
+    .modal-card {
+        max-width: 95%;
+        padding: 28px 20px;
+    }
+
+    .checkout-modal-card {
+        max-width: 95%;
+        padding: 28px 18px;
+    }
+
+    .checkout-steps {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .checkout-step-content {
+        padding: 0;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-methods-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-header {
+        padding: 12px 10px;
+    }
+
+    .logo-link {
+        font-size: 1.15rem;
+    }
+
+    .icon-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-menu ul {
+        gap: 8px;
+    }
+
+    .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .hero-tagline {
+        font-size: 1rem;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-cta-group .btn {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .event-details-bar {
+        width: 100%;
+    }
+
+    .monitor-screen {
+        height: auto;
+        min-height: 220px;
+        padding: 18px;
+    }
+
+    .ticket-receipt {
+        padding: 20px;
+    }
+
+    .checkout-security-badges {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 }
 
