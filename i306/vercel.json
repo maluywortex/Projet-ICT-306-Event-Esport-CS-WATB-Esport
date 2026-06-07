@@ -1,21 +1,27 @@
 {
-  "buildCommand": "npm install",
-  "public": "src/frontend",
-  "functions": {
-    "api/**/*.js": {
-      "memory": 128,
-      "maxDuration": 10
-    }
-  },
-  "headers": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "src/frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/src/frontend/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/src/frontend/$1"
     }
   ]
 }
