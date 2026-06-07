@@ -49,9 +49,11 @@
                 </button>
                 
                 <!-- Admin / Authentication Button -->
-                <button class="btn btn-outline" id="admin-portal-btn">
-                    <i class="fa-solid fa-user-shield"></i> <span>Portail Admin</span>
+                <button class="btn btn-outline" id="login-btn">
+                    <i class="fa-solid fa-user"></i> <span>Se connecter</span>
                 </button>
+
+                <!-- admin portal removed per user request -->
             </div>
         </div>
     </header>
@@ -292,6 +294,67 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-card" style="max-width:420px;">
+            <button class="modal-close-btn" id="login-close-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div style="padding:20px 24px;">
+                <h3 class="modal-title">Connexion</h3>
+                <p class="modal-subtitle">Connectez-vous pour accéder à votre compte.</p>
+
+                <form id="login-form" class="checkout-form" novalidate>
+                    <div class="form-group">
+                        <label for="login-email">Adresse e-mail</label>
+                        <input type="email" id="login-email" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Mot de passe</label>
+                        <input type="password" id="login-password" required placeholder="Mot de passe">
+                    </div>
+                    <div style="display:flex; gap:10px; margin-top:14px;">
+                        <button type="button" class="btn btn-outline" id="login-cancel">Annuler</button>
+                        <button type="submit" class="btn btn-primary" id="login-submit">Se connecter</button>
+                    </div>
+                    <div style="margin-top:8px; font-size:0.9rem;">
+                        Pas de compte ? <a href="#" id="show-signup">S'inscrire</a>
+                    </div>
+                    <div id="login-error" style="color:var(--danger); margin-top:10px; display:none;"></div>
+                </form>
+
+                <!-- SIGNUP FORM (hidden by default) -->
+                <form id="signup-form" class="checkout-form" novalidate style="display:none; margin-top:8px;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signup-first">Prénom</label>
+                            <input type="text" id="signup-first" placeholder="Prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-last">Nom</label>
+                            <input type="text" id="signup-last" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Adresse E-mail</label>
+                        <input type="email" id="signup-email" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Mot de passe</label>
+                        <input type="password" id="signup-password" required placeholder="Mot de passe">
+                    </div>
+                    <div style="display:flex; gap:10px; margin-top:14px;">
+                        <button type="button" class="btn btn-outline" id="signup-cancel">Annuler</button>
+                        <button type="submit" class="btn btn-primary" id="signup-submit">S'inscrire</button>
+                    </div>
+                    <div style="margin-top:8px; font-size:0.9rem;">
+                        Déjà inscrit ? <a href="#" id="show-login">Se connecter</a>
+                    </div>
+                    <div id="signup-error" style="color:var(--danger); margin-top:10px; display:none;"></div>
+                    <div id="signup-success" style="color:var(--success); margin-top:10px; display:none;"></div>
+                </form>
             </div>
         </div>
     </div>
@@ -784,10 +847,8 @@
                     L'événement Esport majeur de l'année 2026 à Yverdon-les-Bains. Vivez l'adrénaline de la compétition en direct !
                 </p>
                 <div class="social-links">
-                    <a href="#" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="https://www.instagram.com/watb_cs_event/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@watb_event_cs" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
             

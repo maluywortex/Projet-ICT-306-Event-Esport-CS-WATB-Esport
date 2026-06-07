@@ -63,6 +63,25 @@ const selectors = {
     navLinks: document.querySelectorAll('.nav-link'),
     matchesList: document.getElementById('matches-list-container'),
     matchDetailViewer: document.getElementById('match-detail-viewer'),
+    loginBtn: document.getElementById('login-btn'),
+    loginModal: document.getElementById('login-modal'),
+    loginForm: document.getElementById('login-form'),
+    loginEmail: document.getElementById('login-email'),
+    loginPassword: document.getElementById('login-password'),
+    loginClose: document.getElementById('login-close-btn'),
+    loginCancel: document.getElementById('login-cancel'),
+    loginError: document.getElementById('login-error'),
+    showSignup: document.getElementById('show-signup'),
+    signupForm: document.getElementById('signup-form'),
+    signupFirst: document.getElementById('signup-first'),
+    signupLast: document.getElementById('signup-last'),
+    signupEmail: document.getElementById('signup-email'),
+    signupPassword: document.getElementById('signup-password'),
+    signupCancel: document.getElementById('signup-cancel'),
+    signupSubmit: document.getElementById('signup-submit'),
+    showLogin: document.getElementById('show-login'),
+    signupError: document.getElementById('signup-error'),
+    signupSuccess: document.getElementById('signup-success'),
 };
 
 const sectionLinks = Array.from(selectors.navLinks).map((link) => {
@@ -403,6 +422,120 @@ function attachEvents() {
         cartState.length = 0;
         renderCart();
     });
+
+    // Login modal handlers
+    if (selectors.loginBtn) selectors.loginBtn.addEventListener('click', () => {
+        if (selectors.loginModal) selectors.loginModal.classList.add('open');
+    });
+    if (selectors.loginClose) selectors.loginClose.addEventListener('click', () => {
+        if (selectors.loginModal) selectors.loginModal.classList.remove('open');
+    });
+    if (selectors.loginCancel) selectors.loginCancel.addEventListener('click', () => {
+        if (selectors.loginModal) selectors.loginModal.classList.remove('open');
+    });
+
+    if (selectors.loginForm) {
+        selectors.loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selectors.loginEmail || !selectors.loginPassword) return;
+            const email = selectors.loginEmail.value.trim();
+            const password = selectors.loginPassword.value;
+            selectors.loginError.style.display = 'none';
+
+            try {
+                const resp = await fetch('/api/users/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const body = await resp.json();
+                if (!resp.ok) {
+                    selectors.loginError.textContent = body.error || 'Erreur de connexion.';
+                    selectors.loginError.style.display = 'block';
+                    return;
+                }
+
+                // Success: update UI and close modal
+                const user = body.user;
+                if (selectors.loginBtn) selectors.loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> <span>${user.first_name || user.email}</span>`;
+                if (selectors.loginModal) selectors.loginModal.classList.remove('open');
+                selectors.loginForm.reset();
+            } catch (err) {
+                selectors.loginError.textContent = 'Impossible de contacter le serveur.';
+                selectors.loginError.style.display = 'block';
+            }
+        });
+    }
+
+    // Toggle to signup
+    if (selectors.showSignup) {
+        selectors.showSignup.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            if (selectors.loginForm) selectors.loginForm.style.display = 'none';
+            if (selectors.signupForm) selectors.signupForm.style.display = 'block';
+            if (selectors.loginError) selectors.loginError.style.display = 'none';
+        });
+    }
+    if (selectors.showLogin) {
+        selectors.showLogin.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            if (selectors.signupForm) selectors.signupForm.style.display = 'none';
+            if (selectors.loginForm) selectors.loginForm.style.display = 'block';
+            if (selectors.signupError) selectors.signupError.style.display = 'none';
+            if (selectors.signupSuccess) selectors.signupSuccess.style.display = 'none';
+        });
+    }
+
+    // Signup handlers
+    if (selectors.signupCancel) selectors.signupCancel.addEventListener('click', () => {
+        if (selectors.signupForm) selectors.signupForm.style.display = 'none';
+        if (selectors.loginForm) selectors.loginForm.style.display = 'block';
+    });
+
+    if (selectors.signupForm) {
+        selectors.signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const first = selectors.signupFirst.value.trim();
+            const last = selectors.signupLast.value.trim();
+            const email = selectors.signupEmail.value.trim();
+            const password = selectors.signupPassword.value;
+            selectors.signupError.style.display = 'none';
+            selectors.signupSuccess.style.display = 'none';
+
+            if (!first || !last || !email || !password) {
+                selectors.signupError.textContent = 'Tous les champs sont requis.';
+                selectors.signupError.style.display = 'block';
+                return;
+            }
+
+            try {
+                const resp = await fetch('/api/users/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ first_name: first, last_name: last, email, password })
+                });
+                const body = await resp.json();
+                if (!resp.ok) {
+                    selectors.signupError.textContent = body.error || 'Erreur lors de l\'inscription.';
+                    selectors.signupError.style.display = 'block';
+                    return;
+                }
+
+                selectors.signupSuccess.textContent = 'Inscription réussie — vous êtes connecté.';
+                selectors.signupSuccess.style.display = 'block';
+
+                // Update UI as logged in
+                const user = body.user;
+                if (selectors.loginBtn) selectors.loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> <span>${user.first_name || user.email}</span>`;
+                if (selectors.loginModal) selectors.loginModal.classList.remove('open');
+                selectors.signupForm.reset();
+            } catch (err) {
+                selectors.signupError.textContent = 'Impossible de contacter le serveur.';
+                selectors.signupError.style.display = 'block';
+            }
+        });
+    }
 
     selectors.matchesList.addEventListener('click', handleMatchSelection);
     window.addEventListener('scroll', updateActiveNavLinkOnScroll, { passive: true });

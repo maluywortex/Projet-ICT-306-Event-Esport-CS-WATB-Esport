@@ -376,6 +376,82 @@ app.post('/api/auth/login', (req, res) => {
   }
 });
 
+// Simple user login (email/password) - demo using JSON file
+app.post('/api/users/login', (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ error: 'Email et mot de passe requis.' });
+
+  // Read users from JSON (demo simple storage)
+  try {
+    const dataPath = path.join(__dirname, '../../data/users.json');
+    const usersRaw = fs.readFileSync(dataPath, 'utf8');
+    const users = JSON.parse(usersRaw);
+    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    if (!user) return res.status(401).json({ error: 'Utilisateur non trouvé.' });
+
+    // For demo purposes passwords stored in plain text (NOT for production)
+    if (user.password !== password) return res.status(401).json({ error: 'Mot de passe incorrect.' });
+
+    // Update login metadata and persist
+    user.last_login = new Date().toISOString();
+    user.login_count = (user.login_count || 0) + 1;
+    try {
+      fs.writeFileSync(dataPath, JSON.stringify(users, null, 2));
+    } catch (wErr) {
+      console.error('Failed to persist user login:', wErr);
+    }
+
+    // Return user info without password
+    const { password: _pw, ...safe } = user;
+    res.json({ success: true, user: safe });
+  } catch (err) {
+    console.error('User login error:', err);
+    res.status(500).json({ error: 'Erreur serveur lors de la lecture des utilisateurs.' });
+  }
+});
+
+// Register new user (demo storage in data/users.json)
+app.post('/api/users/register', (req, res) => {
+  const { first_name, last_name, email, password } = req.body;
+  if (!first_name || !last_name || !email || !password) return res.status(400).json({ error: 'Tous les champs sont requis.' });
+
+  const dataPath = path.join(__dirname, '../../data/users.json');
+  try {
+    const usersRaw = fs.readFileSync(dataPath, 'utf8');
+    const users = JSON.parse(usersRaw);
+
+    const emailLower = email.toLowerCase();
+    if (users.find(u => u.email.toLowerCase() === emailLower)) {
+      return res.status(409).json({ error: 'Un compte avec cette adresse e-mail existe déjà.' });
+    }
+
+    const newUser = {
+      id: 'user-' + Date.now(),
+      email: emailLower,
+      password: password, // plain text for demo only
+      first_name: first_name,
+      last_name: last_name,
+      created_at: new Date().toISOString(),
+      last_login: new Date().toISOString(),
+      login_count: 1,
+      role: 'spectator'
+    };
+
+    users.push(newUser);
+    try {
+      fs.writeFileSync(dataPath, JSON.stringify(users, null, 2));
+    } catch (wErr) {
+      console.error('Failed to write new user:', wErr);
+    }
+
+    const { password: _pw, ...safe } = newUser;
+    res.status(201).json({ success: true, user: safe });
+  } catch (err) {
+    console.error('User register error:', err);
+    res.status(500).json({ error: 'Erreur serveur lors de l\'inscription.' });
+  }
+});
+
 // Verify 2FA
 app.post('/api/auth/verify-2fa', (req, res) => {
   const { email, code } = req.body;
