@@ -2457,6 +2457,79 @@ input:focus, textarea:focus {
     }
 }
 
+@media (max-aspect-ratio: 5/9) {
+    .hero-section {
+        padding: 32px 0 38px;
+    }
+
+    .hero-container {
+        gap: 18px;
+    }
+
+    .hero-title {
+        font-size: 1.35rem;
+        line-height: 1.2;
+    }
+
+    .hero-tagline {
+        font-size: 0.72rem;
+        margin-bottom: 24px;
+        max-width: 100%;
+    }
+
+    .event-badge-glow {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+    }
+
+    .event-details-bar {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .detail-item i {
+        font-size: 1.1rem;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-cta-group .btn {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+
+    .hero-gfx-content {
+        margin-top: 10px;
+    }
+
+    .monitor-screen {
+        min-height: 140px;
+        padding: 10px;
+    }
+
+    .monitor-header {
+        padding: 5px 8px;
+        font-size: 0.6rem;
+    }
+
+    .screen-overlay {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .screen-overlay span {
+        font-size: 0.6rem;
+    }
+
+    .container {
+        padding: 0 6px;
+    }
+}
+
 /* --- SECURE PAYMENT STYLING --- */
 .card-input-wrapper {
     position: relative;
