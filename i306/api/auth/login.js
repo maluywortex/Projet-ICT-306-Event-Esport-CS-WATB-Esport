@@ -1,5 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const ADMIN_EMAIL = 'admin@eventandparty.ch';
 const ADMIN_PASSWORD = 'admin';
@@ -15,8 +19,8 @@ export default function handler(req, res) {
   }
 
   try {
-    // Lire les utilisateurs depuis le fichier JSON
-    const dataPath = path.join(process.cwd(), 'data', 'users.json');
+    // Chemin corrigé pour Vercel
+    const dataPath = path.join(__dirname, '../../data/users.json');
     const usersRaw = fs.readFileSync(dataPath, 'utf8');
     const users = JSON.parse(usersRaw);
     

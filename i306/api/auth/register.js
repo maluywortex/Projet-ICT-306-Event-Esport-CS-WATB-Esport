@@ -1,5 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default function handler(req, res) {
   if (req.method !== 'POST') {
@@ -12,7 +16,7 @@ export default function handler(req, res) {
   }
 
   try {
-    const dataPath = path.join(process.cwd(), 'data', 'users.json');
+    const dataPath = path.join(__dirname, '../../data/users.json');
     const usersRaw = fs.readFileSync(dataPath, 'utf8');
     const users = JSON.parse(usersRaw);
 
