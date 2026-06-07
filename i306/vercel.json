@@ -1,6 +1,11 @@
 {
   "buildCommand": "npm install",
-  "public": "src/frontend",
+  "functions": {
+    "api/**/*.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -9,6 +14,17 @@
     {
       "source": "/(.*)",
       "destination": "/src/frontend/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
   ]
 }
