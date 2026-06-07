@@ -2412,6 +2412,51 @@ input:focus, textarea:focus {
     }
 }
 
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.45rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.72rem;
+    }
+
+    .event-badge-glow {
+        padding: 3px 8px;
+    }
+
+    .hero-cta-group .btn {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+
+    .monitor-screen {
+        min-height: 140px;
+        padding: 10px;
+    }
+
+    .monitor-header {
+        padding: 5px 8px;
+        font-size: 0.6rem;
+    }
+
+    .screen-overlay span {
+        font-size: 0.6rem;
+    }
+
+    .event-details-bar {
+        padding: 10px;
+    }
+
+    .hero-container {
+        gap: 24px;
+    }
+
+    .container {
+        padding: 0 6px;
+    }
+}
+
 /* --- SECURE PAYMENT STYLING --- */
 .card-input-wrapper {
     position: relative;
