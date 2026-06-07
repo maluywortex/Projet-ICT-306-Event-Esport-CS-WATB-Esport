@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm install",
+  "public": "src/frontend",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/src/frontend/index.html"
+    }
+  ]
+}

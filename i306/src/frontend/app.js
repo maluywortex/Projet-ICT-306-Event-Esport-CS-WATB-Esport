@@ -443,7 +443,7 @@ function attachEvents() {
             selectors.loginError.style.display = 'none';
 
             try {
-                const resp = await fetch('/api/users/login', {
+                const resp = await fetch('/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -510,7 +510,7 @@ function attachEvents() {
             }
 
             try {
-                const resp = await fetch('/api/users/register', {
+                const resp = await fetch('/api/auth/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ first_name: first, last_name: last, email, password })
