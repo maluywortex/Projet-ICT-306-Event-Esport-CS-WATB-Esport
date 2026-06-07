@@ -540,7 +540,7 @@ setInterval(() => {
 }, 20000);
 
 // Root fallback to index.html
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 

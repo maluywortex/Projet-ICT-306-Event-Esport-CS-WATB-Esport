@@ -6,8 +6,8 @@
     "first_name": "Jean",
     "last_name": "Dupont",
     "created_at": "2026-05-25T14:32:00.000Z",
-    "last_login": null,
-    "login_count": 0
+    "last_login": "2026-06-07T09:47:08.622Z",
+    "login_count": 2
   },
   {
     "id": "user-2",
@@ -39,5 +39,16 @@
     "last_login": null,
     "login_count": 0,
     "role": "admin"
+  },
+  {
+    "id": "user-1780825616666",
+    "email": "pasha@gmail.com",
+    "password": "admin",
+    "first_name": "pasha",
+    "last_name": "osad",
+    "created_at": "2026-06-07T09:46:56.666Z",
+    "last_login": "2026-06-07T09:49:12.588Z",
+    "login_count": 2,
+    "role": "spectator"
   }
 ]
