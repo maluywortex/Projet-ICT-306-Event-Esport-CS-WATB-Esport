@@ -2190,6 +2190,97 @@ input:focus, textarea:focus {
         align-items: flex-start;
         gap: 12px;
     }
+
+    .hero-title {
+        font-size: 2.2rem;
+        letter-spacing: 0;
+    }
+
+    .hero-tagline {
+        font-size: 0.95rem;
+        max-width: 100%;
+    }
+
+    .hero-cta-group .btn {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+        padding: 12px 18px;
+    }
+
+    .hero-gfx-content .esports-monitor {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .monitor-screen {
+        min-height: 200px;
+        padding: 16px;
+    }
+
+    .monitor-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .screen-overlay {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .screen-overlay span {
+        font-size: 0.75rem;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero-section {
+        padding: 50px 0 60px;
+    }
+
+    .hero-container {
+        gap: 30px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.9rem;
+    }
+
+    .event-details-bar {
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .event-details-bar .detail-item {
+        gap: 10px;
+    }
+
+    .hero-cta-group {
+        gap: 10px;
+    }
+
+    .hero-gfx-content {
+        margin-top: 20px;
+    }
+
+    .monitor-screen {
+        min-height: 180px;
+    }
+
+    .header-actions {
+        gap: 8px;
+    }
 }
 
 /* --- SECURE PAYMENT STYLING --- */
