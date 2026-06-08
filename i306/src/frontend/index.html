@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
     <!-- Main Style Sheet -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Leaflet map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="./image.ico" type="image/x-icon">
@@ -38,6 +40,7 @@
                     <li><a href="#about" class="nav-link" id="nav-about">L'Événement</a></li>
                     <li><a href="#tickets" class="nav-link" id="nav-tickets">Billetterie</a></li>
                     <li><a href="#live" class="nav-link" id="nav-live"><span class="pulse-dot"></span>Direct & Brackets</a></li>
+                    <li><a href="#parking" class="nav-link" id="nav-parking">Parking</a></li>
                 </ul>
             </nav>
 
@@ -584,6 +587,27 @@
             </div>
         </section>
 
+        <!-- SECTION 3.5: PARKING MAP -->
+        <section class="about-section" id="parking">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Parkings & Disponibilités</h2>
+                    <p class="section-subtitle">Carte interactive des parkings autour de La Marive — places disponibles générées aléatoirement pour la démo.</p>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 360px; gap:24px; align-items:start;">
+                    <div>
+                        <div id="parking-map" style="width:100%; height:480px; border-radius:12px; overflow:hidden; border:1px solid rgba(168,85,247,0.12);"></div>
+                    </div>
+
+                    <aside style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:18px;">
+                        <h4 style="margin-bottom:12px;">Liste des parkings</h4>
+                        <div id="parking-list" style="display:flex; flex-direction:column; gap:10px; max-height:420px; overflow:auto;"></div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
         <!-- SECTION 4: LIVE TOURNAMENT RESULTS & BRACKETS -->
         <section class="live-section" id="live">
             <div class="container">
@@ -870,6 +894,7 @@
     </footer>
 
     <!-- App JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

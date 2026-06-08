@@ -30,6 +30,11 @@
     --shadow-glow: 0 0 20px rgba(168, 85, 247, 0.4);
 }
 
+/* Offset anchor targets so sticky header doesn't cover them */
+section[id] {
+    scroll-margin-top: 96px; /* adjust if header height changes */
+}
+
 /* --- BASE STYLING --- */
 * {
     margin: 0;
@@ -40,6 +45,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    /* Ensure anchor scrolling accounts for the fixed header height */
+    scroll-padding-top: 96px;
 }
 
 body {

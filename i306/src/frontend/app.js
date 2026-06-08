@@ -266,6 +266,105 @@ function handleMatchSelection(event) {
     renderMatchDetail(match);
 }
 
+// --- PARKING: génération aléatoire et affichage sur carte Leaflet ---
+let parkingData = [];
+let parkingMap = null;
+let parkingLayerGroup = null;
+
+function generateParkingData(count = 6) {
+    const baseLat = 46.7785; // La Marive, Yverdon-les-Bains approx
+    const baseLng = 6.6411;
+    const parks = [];
+
+    for (let i = 0; i < count; i += 1) {
+        const lat = baseLat + (Math.random() - 0.5) * 0.02; // small offset
+        const lng = baseLng + (Math.random() - 0.5) * 0.03;
+        const capacity = getRandomInt(30, 250);
+        const available = getRandomInt(0, capacity);
+        parks.push({
+            id: `park-${i + 1}`,
+            name: `Parking ${String.fromCharCode(65 + i)}`,
+            lat,
+            lng,
+            capacity,
+            available
+        });
+    }
+
+    return parks;
+}
+
+function renderParkingList() {
+    const listEl = document.getElementById('parking-list');
+    if (!listEl) return;
+    listEl.innerHTML = '';
+
+    parkingData.forEach((p) => {
+        const percent = Math.round((p.available / p.capacity) * 100);
+        const entry = document.createElement('div');
+        entry.style.display = 'flex';
+        entry.style.justifyContent = 'space-between';
+        entry.style.alignItems = 'center';
+        entry.style.padding = '8px';
+        entry.style.borderRadius = '8px';
+        entry.style.background = 'rgba(0,0,0,0.05)';
+
+        entry.innerHTML = `
+            <div style="display:flex; flex-direction:column;">
+                <strong style="font-size:0.95rem">${p.name}</strong>
+                <small style="color:var(--text-muted)">Capacité: ${p.capacity} · Disponibles: ${p.available}</small>
+            </div>
+            <div style="text-align:right; min-width:64px;">
+                <div style="font-weight:800; color:${p.available>0? 'var(--success)': 'var(--danger)'}">${p.available}</div>
+                <small style="color:var(--text-muted)">${percent}%</small>
+            </div>
+        `;
+
+        entry.addEventListener('click', () => {
+            if (!parkingMap) return;
+            parkingMap.setView([p.lat, p.lng], 16, { animate: true });
+        });
+
+        listEl.appendChild(entry);
+    });
+}
+
+function initParking() {
+    // generate sample data
+    parkingData = generateParkingData(7);
+
+    // init map
+    if (typeof L === 'undefined') return;
+    parkingMap = L.map('parking-map', { scrollWheelZoom: false }).setView([46.7785, 6.6411], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(parkingMap);
+
+    parkingLayerGroup = L.layerGroup().addTo(parkingMap);
+
+    parkingData.forEach((p) => {
+        const color = p.available > 0 ? '#10b981' : '#bb1d1d';
+        const circle = L.circleMarker([p.lat, p.lng], {
+            radius: 10,
+            color,
+            fillColor: color,
+            fillOpacity: 0.9,
+            weight: 2
+        }).addTo(parkingLayerGroup);
+
+        circle.bindPopup(`
+            <strong>${p.name}</strong><br>
+            Capacité: ${p.capacity}<br>
+            Disponibles: <strong>${p.available}</strong>
+        `);
+    });
+
+    renderParkingList();
+}
+
+
 
 const emptyCartMessageHtml = `
     <div class="empty-cart-message">
@@ -401,9 +500,27 @@ function attachEvents() {
         });
     });
 
+    // Smooth scroll with header offset for all in-page nav links
     selectors.navLinks.forEach((link) => {
-        link.addEventListener('click', () => {
-            setActiveNavLink(link);
+        link.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            const href = link.getAttribute('href');
+            if (!href || !href.startsWith('#')) return;
+            const id = href.slice(1);
+            const target = document.getElementById(id);
+            const header = document.querySelector('.main-header');
+            const offset = header ? header.offsetHeight + 8 : 96;
+
+            if (target) {
+                const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+                // update URL hash without jumping
+                history.replaceState(null, '', href);
+                setActiveNavLink(link);
+            } else {
+                // fallback to default behaviour
+                setActiveNavLink(link);
+            }
         });
     });
 
@@ -549,5 +666,7 @@ window.addEventListener('DOMContentLoaded', () => {
     renderMatchDetail(tournamentMatches[0]);
     renderCart();
     attachEvents();
+    // initialize parking map and list
+    try { initParking(); } catch (e) { /* ignore if Leaflet missing */ }
     activateNavByHash();
 });
